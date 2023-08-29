@@ -1,0 +1,23 @@
+{
+  "name": "chandrayaan-3-tdd-assessment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fazal-10/chandrayaan-3-tdd-assessment.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fazal-10/chandrayaan-3-tdd-assessment/issues"
+  },
+  "homepage": "https://github.com/fazal-10/chandrayaan-3-tdd-assessment#readme",
+  "dependencies": {
+    "jest": "^29.6.4"
+  }
+}

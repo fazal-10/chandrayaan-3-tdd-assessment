@@ -1,7 +1,9 @@
 class LunarCraft {
     constructor() {
+        // Initialize the spacecraft's initial position and direction
         this.position = { x: 0, y: 0, z: 0 };
         this.directions = ["N", "E", "S", "W", "Up", "Down"];
+        // Initially spacecraft is facing North (0 index in directions array)
         this.currentDirectionIndex = 0;
     }
 
@@ -32,6 +34,7 @@ class LunarCraft {
         }
     }
 
+    // Move the spacecraft forward based on its current direction
     moveForward() {
         switch (this.directions[this.currentDirectionIndex]) {
             case "N":
@@ -55,6 +58,7 @@ class LunarCraft {
         }
     }
 
+    // Move the spacecraft backward based on its current direction
     moveBackward() {
         switch (this.directions[this.currentDirectionIndex]) {
             case "N":
@@ -78,30 +82,36 @@ class LunarCraft {
         }
     }
 
+    // Rotates the spacecraft 90 degree to the right by its current direction
     turnRight() {
         this.currentDirectionIndex = (this.currentDirectionIndex + 1) % this.directions.length;
     }
 
+    // Rotates the spacecraft 90 degree to the left by its current direction
     turnLeft() {
         this.currentDirectionIndex = (this.currentDirectionIndex - 1 + this.directions.length) % this.directions.length;
     }
 
+    // Changing angle of the spacecraft by rotating upwards
     turnUp() {
         if (this.directions[this.currentDirectionIndex] === "N" || this.directions[this.currentDirectionIndex] === "S") {
             this.directions[this.currentDirectionIndex] = "Up";
         }
     }
 
+    // Changing angle of the spacecraft by rotating downwards
     turnDown() {
         if (this.directions[this.currentDirectionIndex] === "N" || this.directions[this.currentDirectionIndex] === "S") {
             this.directions[this.currentDirectionIndex] = "Down";
         }
     }
 
+    // Get the current position of the spacecraft
     getPosition() {
         return this.position;
     }
 
+    // Get the current direction the spacecraft is facing
     getDirection() {
         return this.directions[this.currentDirectionIndex];
     }

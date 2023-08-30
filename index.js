@@ -1,4 +1,4 @@
-class LunarCraft {
+export default class LunarCraft {
     constructor() {
         // Initialize the spacecraft's initial position and direction
         this.position = { x: 0, y: 0, z: 0 };

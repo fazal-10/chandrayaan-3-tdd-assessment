@@ -51,11 +51,19 @@ describe('LunarCraft', () => {
     //     expect(craft.getDirection()).toBe("Down");
     // });
 
-    test('Executing ["f","r"] command should move spacecraft forward and then turn right', () => {
+    // test('Executing ["f","r"] command should move spacecraft forward and then turn right', () => {
+    //     const craft = new LunarCraft();
+    //     const commands = ["f","r"];
+    //     craft.executeCommands(commands);
+    //     expect(craft.getPosition()).toEqual({ x: 0, y: 1, z: 0 });
+    //     expect(craft.getDirection()).toBe("E");
+    // });
+    
+    test('Executing ["f","r","u"] command should move spacecraft forward, then turn right and then Upward', () => {
         const craft = new LunarCraft();
-        const commands = ["f","r"];
+        const commands = ["f","r","u"];
         craft.executeCommands(commands);
         expect(craft.getPosition()).toEqual({ x: 0, y: 1, z: 0 });
-        expect(craft.getDirection()).toBe("E");
+        expect(craft.getDirection()).toBe("Up");
     });
 });

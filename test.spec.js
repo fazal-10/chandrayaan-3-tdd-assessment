@@ -91,7 +91,7 @@ describe('LunarCraft', () => {
         expect(craft.getDirection()).toBe("S");
     });
 
-    test('Executing ["f","l","u","b","r"] command should move spacecraft forward, then turn left, then Upward, then move backward and then turn left', () => {
+    test('Executing ["f","l","u","b","r"] command should move spacecraft forward, then turn left, then Upward, then move backward and then turn right', () => {
         const craft = new LunarCraft();
         const commands = ["f","l","u","b","r"];
         craft.executeCommands(commands);

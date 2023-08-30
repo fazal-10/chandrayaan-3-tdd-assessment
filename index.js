@@ -113,16 +113,13 @@ class LunarCraft {
 
     // Changing angle of the spacecraft by rotating upwards
     turnUp() {
-        if (this.directions[this.currentDirectionIndex] === "N" || this.directions[this.currentDirectionIndex] === "S") {
-            this.directions[this.currentDirectionIndex] = "Up";
-        }
+        this.directions[this.currentDirectionIndex] = "Up";
+
     }
 
     // Changing angle of the spacecraft by rotating downwards
     turnDown() {
-        if (this.directions[this.currentDirectionIndex] === "N" || this.directions[this.currentDirectionIndex] === "S") {
-            this.directions[this.currentDirectionIndex] = "Down";
-        }
+        this.directions[this.currentDirectionIndex] = "Down";
     }
 
     // Get the current position of the spacecraft

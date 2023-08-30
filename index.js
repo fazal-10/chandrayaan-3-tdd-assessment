@@ -3,6 +3,7 @@ class LunarCraft {
         // Initialize the spacecraft's initial position and direction
         this.position = { x: 0, y: 0, z: 0 };
         this.directions = ["N", "E", "S", "W", "Up", "Down"];
+
         // Initially spacecraft is facing North (0 index in directions array)
         this.currentDirectionIndex = 0;
     }

@@ -178,7 +178,7 @@ class LunarCraft {
 
     // Changing angle of the spacecraft by rotating Downwards
     turnDown() {
-        this.currentDirectionIndex = "Down";
+        this.currentDirection = "Down";
     }
 
     // Get the current position of the spacecraft

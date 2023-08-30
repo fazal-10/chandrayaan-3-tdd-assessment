@@ -2,10 +2,12 @@ class LunarCraft {
     constructor() {
         // Initialize the spacecraft's initial position and direction
         this.position = { x: 0, y: 0, z: 0 };
-        this.directions = ["N", "E", "S", "W", "Up", "Down"];
 
-        // Initially spacecraft is facing North (0 index in directions array)
-        this.currentDirectionIndex = 0;
+        // Start facing North (0 index in directions array)
+        this.currentDirection = "N";
+
+        //"originalHorizontalDirection" is required bcoz when we change spacecraft direction to Up or Down ,we need to store previous direction bcoz after doing Up or Down,if we needed to change spacecraft position to its left or right we need this horizontal direction ,so based on that we decide final direction of spacecraft.
+        this.originalHorizontalDirection = "N";
     }
 
     executeCommands(commands) {
@@ -37,7 +39,7 @@ class LunarCraft {
 
     // Move the spacecraft forward based on its current direction
     moveForward() {
-        switch (this.directions[this.currentDirectionIndex]) {
+        switch (this.currentDirection) {
             case "N":
                 this.position.y += 1;
                 break;
@@ -61,7 +63,7 @@ class LunarCraft {
 
     // Move the spacecraft backward based on its current direction
     moveBackward() {
-        switch (this.directions[this.currentDirectionIndex]) {
+        switch (this.currentDirection) {
             case "N":
                 this.position.y -= 1;
                 break;
@@ -85,42 +87,98 @@ class LunarCraft {
 
     // Rotates the spacecraft 90 degree to the right by its current direction
     turnRight() {
-        this.currentDirectionIndex = (this.currentDirectionIndex + 1) % this.directions.length;
-    }
+        switch (this.currentDirection) {
+            case "N":
+                this.currentDirection = "E";
+                this.originalHorizontalDirection = "E";
+                break;
+            case "E":
+                this.currentDirection = "S";
+                this.originalHorizontalDirection = "S";
+                break;
+            case "S":
+                this.currentDirection = "W";
+                this.originalHorizontalDirection = "W";
+                break;
+            case "W":
+                this.currentDirection = "N";
+                this.originalHorizontalDirection = "N";
+                break;
 
-    // Rotates the spacecraft 90 degree to the left by its current direction
-    turnLeft() {
-        switch (this.currentDirectionIndex) {
-            case 0:
-                this.currentDirectionIndex = 3;
-                break;
-            case 1:
-                this.currentDirectionIndex = 0;
-                break;
-            case 2:
-                this.currentDirectionIndex = 1;
-                break;
-            case 3:
-                this.currentDirectionIndex = 2;
-                break;
-            case 4:
-                this.currentDirectionIndex = 0;
-                break;
-            case 5:
-                this.currentDirectionIndex = 2;
+            //for Up & Down cases, we need to do same thing,that's why if-else ladder will execute for both cases
+            case "Up":
+            case "Down":
+                if (this.originalHorizontalDirection == "N") {
+                    this.currentDirection = "E";
+                    this.originalHorizontalDirection = "E";
+                }
+                else if (this.originalHorizontalDirection == "E") {
+                    this.currentDirection = "S";
+                    this.originalHorizontalDirection = "S";
+                }
+                else if (this.originalHorizontalDirection == "S") {
+                    this.currentDirection = "W";
+                    this.originalHorizontalDirection = "W";
+                }
+                else {
+                    this.currentDirection = "N";
+                    this.originalHorizontalDirection = "N";
+                }
                 break;
         }
     }
 
-    // Changing angle of the spacecraft by rotating upwards
-    turnUp() {
-        this.directions[this.currentDirectionIndex] = "Up";
+    // Rotates the spacecraft 90 degree to the left by its current direction
+    turnLeft() {
+        switch (this.currentDirection) {
+            case "N":
+                this.currentDirection = "W";
+                this.originalHorizontalDirection = "W";
+                break;
+            case "E":
+                this.currentDirection = "N";
+                this.originalHorizontalDirection = "N";
+                break;
+            case "S":
+                this.currentDirection = "E";
+                this.originalHorizontalDirection = "E";
+                break;
+            case "W":
+                this.currentDirection = "S";
+                this.originalHorizontalDirection = "S";
+                break;
 
+            //for Up & Down cases, we need to do same thing,that's why if-else ladder will execute for both cases
+            case "Up":
+            case "Down":
+                if (this.originalHorizontalDirection == "N") {
+                    this.currentDirection = "W";
+                    this.originalHorizontalDirection = "W";
+                }
+                else if (this.originalHorizontalDirection == "E") {
+                    this.currentDirection = "N";
+                    this.originalHorizontalDirection = "N";
+                }
+                else if (this.originalHorizontalDirection == "S") {
+                    this.currentDirection = "E";
+                    this.originalHorizontalDirection = "E";
+                }
+                else {
+                    this.currentDirection = "S";
+                    this.originalHorizontalDirection = "S";
+                }
+                break;
+        }
     }
 
-    // Changing angle of the spacecraft by rotating downwards
+    // Changing angle of the spacecraft by rotating Upwards
+    turnUp() {
+        this.currentDirection = "Up";
+    }
+
+    // Changing angle of the spacecraft by rotating Downwards
     turnDown() {
-        this.directions[this.currentDirectionIndex] = "Down";
+        this.currentDirectionIndex = "Down";
     }
 
     // Get the current position of the spacecraft
@@ -130,13 +188,13 @@ class LunarCraft {
 
     // Get the current direction the spacecraft is facing
     getDirection() {
-        return this.directions[this.currentDirectionIndex];
+        return this.currentDirection;
     }
+
 }
 
-// Example usage
 const craft = new LunarCraft();
-const commands = ["f", "r", "u", "b", "l"];
+const commands = ["f", "l", "u", "b", "r"];
 craft.executeCommands(commands);
 console.log("Final Position:", craft.getPosition());
 console.log("Final Direction:", craft.getDirection());

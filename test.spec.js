@@ -53,7 +53,7 @@ describe('LunarCraft', () => {
 
     test('Executing ["f","r"] command should move spacecraft forward and then turn right', () => {
         const craft = new LunarCraft();
-        const commands = ["d"];
+        const commands = ["f","r"];
         craft.executeCommands(commands);
         expect(craft.getPosition()).toEqual({ x: 0, y: 1, z: 0 });
         expect(craft.getDirection()).toBe("E");

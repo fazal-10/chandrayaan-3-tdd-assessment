@@ -1,4 +1,4 @@
-export default class LunarCraft {
+class LunarCraft {
     constructor() {
         // Initialize the spacecraft's initial position and direction
         this.position = { x: 0, y: 0, z: 0 };
@@ -123,3 +123,5 @@ const commands = ["f", "r", "u", "b", "l"];
 craft.executeCommands(commands);
 console.log("Final Position:", craft.getPosition());
 console.log("Final Direction:", craft.getDirection());
+
+module.exports = LunarCraft;

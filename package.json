@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "jest"
-  },
+    "scripts": {
+      "test": "jest"
+    },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fazal-10/chandrayaan-3-tdd-assessment.git"
@@ -17,7 +17,7 @@
     "url": "https://github.com/fazal-10/chandrayaan-3-tdd-assessment/issues"
   },
   "homepage": "https://github.com/fazal-10/chandrayaan-3-tdd-assessment#readme",
-  "dependencies": {
+  "devDependencies": {
     "jest": "^29.6.4"
   }
 }

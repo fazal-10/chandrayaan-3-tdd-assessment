@@ -89,7 +89,26 @@ class LunarCraft {
 
     // Rotates the spacecraft 90 degree to the left by its current direction
     turnLeft() {
-        this.currentDirectionIndex = (this.currentDirectionIndex - 1 + this.directions.length) % this.directions.length;
+        switch (this.currentDirectionIndex) {
+            case 0:
+                this.currentDirectionIndex = 3;
+                break;
+            case 1:
+                this.currentDirectionIndex = 0;
+                break;
+            case 2:
+                this.currentDirectionIndex = 1;
+                break;
+            case 3:
+                this.currentDirectionIndex = 2;
+                break;
+            case 4:
+                this.currentDirectionIndex = 0;
+                break;
+            case 5:
+                this.currentDirectionIndex = 2;
+                break;
+        }
     }
 
     // Changing angle of the spacecraft by rotating upwards

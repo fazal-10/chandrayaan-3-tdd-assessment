@@ -2,13 +2,29 @@ class LunarCraft {
     constructor() {
         // Initialize the spacecraft's initial position and direction
         this.position = { x: 0, y: 0, z: 0 };
-
+        //creating the boundary
+        this.positiveBoundary = { x: 5, y: 5, z: 5 };
+        this.negativeBoundary = { x: -5, y: -5, z: -5 };
         // Start facing North (0 index in directions array)
         this.currentDirection = "N";
 
         //"originalHorizontalDirection" is required bcoz when we change spacecraft direction to Up or Down ,we need to store previous direction bcoz after doing Up or Down,if we needed to change spacecraft position to its left or right we need this horizontal direction ,so based on that we decide final direction of spacecraft.
         this.originalHorizontalDirection = "N";
     }
+
+    //boundary check for coorinate value (increment case) 
+    boundaryCheckInc(coordinate) {
+        if (this.position[coordinate] >= this.negativeBoundary[coordinate] && this.position[coordinate] < this.positiveBoundary[coordinate])
+            return true;
+        else return false;
+    }
+    //boundary check for coorinate value (decrement case) 
+    boundaryCheckDec(coordinate) {
+        if (this.position[coordinate] > this.negativeBoundary[coordinate] && this.position[coordinate] <= this.positiveBoundary[coordinate])
+            return true;
+        else return false;
+    }
+
 
     executeCommands(commands) {
         for (const command of commands) {
@@ -33,6 +49,7 @@ class LunarCraft {
                     break;
                 default:
                     console.log("Invalid command:", command);
+                    break;
             }
         }
     }
@@ -41,22 +58,28 @@ class LunarCraft {
     moveForward() {
         switch (this.currentDirection) {
             case "N":
-                this.position.y += 1;
+                if (this.boundaryCheckInc("y"))
+                    this.position.y += 1;
                 break;
             case "E":
-                this.position.x += 1;
+                if (this.boundaryCheckInc("x"))
+                    this.position.x += 1;
                 break;
             case "S":
-                this.position.y -= 1;
+                if (this.boundaryCheckDec("y"))
+                    this.position.y -= 1;
                 break;
             case "W":
-                this.position.x -= 1;
+                if (this.boundaryCheckDec("x"))
+                    this.position.x -= 1;
                 break;
             case "Up":
-                this.position.z += 1;
+                if (this.boundaryCheckInc("z"))
+                    this.position.z += 1;
                 break;
             case "Down":
-                this.position.z -= 1;
+                if (this.boundaryCheckDec("z"))
+                    this.position.z -= 1;
                 break;
         }
     }
@@ -65,22 +88,28 @@ class LunarCraft {
     moveBackward() {
         switch (this.currentDirection) {
             case "N":
-                this.position.y -= 1;
+                if (this.boundaryCheckDec("y"))
+                    this.position.y -= 1;
                 break;
             case "E":
-                this.position.x -= 1;
+                if (this.boundaryCheckDec("x"))
+                    this.position.x -= 1;
                 break;
             case "S":
-                this.position.y += 1;
+                if (this.boundaryCheckInc("y"))
+                    this.position.y += 1;
                 break;
             case "W":
-                this.position.x += 1;
+                if (this.boundaryCheckInc("x"))
+                    this.position.x += 1;
                 break;
             case "Up":
-                this.position.z -= 1;
+                if (this.boundaryCheckDec("y"))
+                    this.position.z -= 1;
                 break;
             case "Down":
-                this.position.z += 1;
+                if (this.boundaryCheckInc("z"))
+                    this.position.z += 1;
                 break;
         }
     }
@@ -194,7 +223,9 @@ class LunarCraft {
 }
 
 const craft = new LunarCraft();
-const commands = ["f", "l", "u", "b", "r"];
+// const commands = ["f", "l", "u", "b", "r"];
+// const commands = ["f", "f", "f", "f", "f", "f"];
+const commands = ["b", "b", "b", "b", "b", "b"];
 craft.executeCommands(commands);
 console.log("Final Position:", craft.getPosition());
 console.log("Final Direction:", craft.getDirection());

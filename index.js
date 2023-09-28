@@ -2,11 +2,12 @@ class LunarCraft {
     constructor() {
         // Initialize the spacecraft's initial position and direction
         this.position = { x: 0, y: 0, z: 0 };
-        //creating the boundary
-        this.positiveBoundary = { x: 5, y: 5, z: 5 };
-        this.negativeBoundary = { x: -5, y: -5, z: -5 };
         // Start facing North (0 index in directions array)
         this.currentDirection = "N";
+
+        //creating the boundary for both direction (forward & backward)
+        this.positiveBoundary = { x: 5, y: 5, z: 5 };
+        this.negativeBoundary = { x: -5, y: -5, z: -5 };
 
         //"originalHorizontalDirection" is required bcoz when we change spacecraft direction to Up or Down ,we need to store previous direction bcoz after doing Up or Down,if we needed to change spacecraft position to its left or right we need this horizontal direction ,so based on that we decide final direction of spacecraft.
         this.originalHorizontalDirection = "N";
@@ -18,6 +19,7 @@ class LunarCraft {
             return true;
         else return false;
     }
+
     //boundary check for coorinate value (decrement case) 
     boundaryCheckDec(coordinate) {
         if (this.position[coordinate] > this.negativeBoundary[coordinate] && this.position[coordinate] <= this.positiveBoundary[coordinate])
